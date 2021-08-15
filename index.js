@@ -16,6 +16,10 @@ nft_uri_Map.set(
   "e4605d46Fd0B3f8329d936a8b258D69276cBa264",
   "https://api.dontbuymeme.com/memes/"
 ); // memes
+nft_uri_Map.set(
+  "57f0B53926dd62f2E26bc40B30140AbEA474DA94",
+  "https://gallery.verynifty.io/api/"
+); // VNFT
 // add more with plugin in the future
 
 module.exports = async (req) => {
