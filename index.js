@@ -2,6 +2,9 @@ const fetch = require("node-fetch");
 const { buffer, text, json } = require("micro");
 const qs = require("querystring");
 const url = require("url");
+const { NFTStorage, Blob } = require('nft.storage')
+const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDkwNTFBMGQ5MjIyMzk5QzYzOUE5MmVERTQ2MjVmODQ2N2FCMUVENjIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYyODM0ODMwOTE1MywibmFtZSI6IueOi-mKmOW-tyJ9.UeBtSr36q57vKmHq3PrGZTbDEhwtKzgngW-MF_7sPfM'
+const client = new NFTStorage({ token: apiKey })
 
 let nft_uri_Map = new Map()
 nft_uri_Map.set('b47e3cd837ddf8e4c57f05d70ab865de6e193bbb',"https://api.cryptokitties.co/kitties/"); // cryptokitties
@@ -38,11 +41,13 @@ module.exports = async (req) => {
 	console.log(NFTContreactAddress)
 	console.log(NFT_id)
       const index = parseInt("0x" + NFT_id);
-      console.log("🦄 cryptokitty index is:" + index);
+      console.log("🦄 cryptokitty, memes, or any other NFT tokoen index is:" + index);
      const apiURI = nft_uri_Map.get(NFTContreactAddress)
       const response = await fetch(
 		apiURI + index
       );
+const cid = await client.storeBlob(new Blob([response]))
+console.log(cid)
       const json = await response.json();
       return json;
     }
