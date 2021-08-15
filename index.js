@@ -9,9 +9,13 @@ const client = new NFTStorage({ token: apiKey });
 
 let nft_uri_Map = new Map();
 nft_uri_Map.set(
+  "06012c8cf97bead5deae237070f9587f8e7a266d",
+  "https://api.cryptokitties.co/kitties/"
+); //  CryptoKitties (CK) 
+nft_uri_Map.set(
   "b47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
   "https://api.cryptokitties.co/kitties/"
-); // cryptokitties
+); //  CRYPTOPUNKS (Ͼ) (URI not correct)
 nft_uri_Map.set(
   "e4605d46Fd0B3f8329d936a8b258D69276cBa264",
   "https://api.dontbuymeme.com/memes/"
@@ -20,11 +24,15 @@ nft_uri_Map.set(
   "57f0B53926dd62f2E26bc40B30140AbEA474DA94",
   "https://gallery.verynifty.io/api/"
 ); // VNFT
+nft_uri_Map.set(
+  "7bd29408f11d2bfc23c34f18275bbf23bb716bc7",
+  "https://meebits.larvalabs.com/meebit/"
+); // meebits
 // add more with plugin in the future
 
 module.exports = async (req) => {
   console.log(
-    "\n 🔥 Usage: curl http://mars.muzamint.com:3001/b47e3cd837ddf8e4c57f05d70ab865de6e193bbb00000000000000000004cce0.json\n"
+    "\n 🔥 Usage: curl http://mars.muzamint.com:3001/06012c8cf97bead5deae237070f9587f8e7a266d00000000000000000004cce0.json\n"
   );
   let tmp = req.url.replace("/", "");
   let longIndex = tmp.replace(".json", "");
@@ -34,7 +42,7 @@ module.exports = async (req) => {
     if (!longIndex.match(".+[A-Fa-f0-9]$")) {
       return {
         error:
-          "not with an index of ERC1155 uri, such as https://token-cdn-domain/b47e3cd837ddf8e4c57f05d70ab865de6e193bbb00000000000000000004cce0.json",
+          "not with an index of ERC1155 uri, such as https://token-cdn-domain/06012c8cf97bead5deae237070f9587f8e7a266d00000000000000000004cce0.json",
       };
     } else {
       /*	
@@ -55,6 +63,8 @@ module.exports = async (req) => {
         "🦄 cryptokitty, memes, or any other NFT tokoen index is:" + index
       );
       const apiURI = nft_uri_Map.get(NFTContreactAddress);
+console.log(apiURI)
+console.log(index)
       const a = await fetch(apiURI + index);
       let b = await a.json();
       var jsonse = JSON.stringify(b);
