@@ -6,10 +6,11 @@ const url = require("url");
 let nft_uri_Map = new Map()
 nft_uri_Map.set('b47e3cd837ddf8e4c57f05d70ab865de6e193bbb',"https://api.cryptokitties.co/kitties/"); // cryptokitties
 nft_uri_Map.set('e4605d46Fd0B3f8329d936a8b258D69276cBa264',"https://api.dontbuymeme.com/memes/"); // memes
+// add more with plugin in the future
 
 module.exports = async (req) => {
   console.log(
-    "\n 🔥 Usage: curl http://localhost:3001/b47e3cd837ddf8e4c57f05d70ab865de6e193bbb00000000000000000004cce0.json\n"
+    "\n 🔥 Usage: curl http://mars.muzamint.com:3001/b47e3cd837ddf8e4c57f05d70ab865de6e193bbb00000000000000000004cce0.json\n"
   );
   let tmp = req.url.replace("/", "");
   let longIndex = tmp.replace(".json", "");
@@ -46,6 +47,6 @@ module.exports = async (req) => {
       return json;
     }
   } else {
-    return 'example: http://localhost:3001/e4605d46Fd0B3f8329d936a8b258D69276cBa26400000000000000000000007b.json';
+    return 'example: http://mars.muzamint.com:3001/e4605d46Fd0B3f8329d936a8b258D69276cBa26400000000000000000000007b.json';
   }
 };
