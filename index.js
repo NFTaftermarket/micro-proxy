@@ -71,7 +71,7 @@ console.log(index)
       var blob = new Blob([jsonse], { type: "application/json" });
       const cid = await client.storeBlob(blob);
       const forwardURL = toGatewayURL("ipfs://" + cid).href;
-      b = { ...b, superxerox: { ipfs: forwardURL, created_date: new Date()} };
+      b = { ...b, superxerox: { ipfs: forwardURL, last_updated_date: new Date()} };
       return b;
     }
   } else {
